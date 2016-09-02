@@ -1,0 +1,61 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: BBj
+file_extensions:
+  - bbj
+scope: source.bbj
+contexts:
+  main: 
+    # The keywords
+    - match: (?i)(continue|break|return)
+      scope: keyword.other.bbj
+    - match: (?i)(?<=\s|=)(call|unt|string)(?=\s)
+      scope: keyword.other.bbj
+    - match: (?i)(?<=\s|^)(print|goto|gosub|dim|redim)
+      scope: keyword.other.bbj
+    - match: (?i)(?<=\s|^|=|\()new(?=\s)
+      scope: keyword.other.bbj
+    # The constructs
+    - match: (?i)(?<=^|\s|;)(if)(?=\s|\()
+      scope: keyword.control.bbj
+    - match: (?i)(?<=^|\s|;)(then|else|endif|fi)(?=\s|$)
+      scope: keyword.control.bbj
+    - match: (?i)(?<=^|\s|;)(while|wend)(?=\s)
+      scope: keyword.control.bbj
+    - match: (?i)(?<=^|\s|;)(for|to|step|next)(?=\s)
+      scope: keyword.control.bbj
+    - match: (?i)(?<=^|\s|;)(switch|case|swend)(?=\s)
+      scope: keyword.control.bbj
+    - match: (?i)(?<=\s)(or|and)(?=\s)
+      scope: keyword.operator.bbj
+      # Constants
+    - match: (?i)(?<=\s|=|>|\+|,|\(|-)\d+(?=\s|\)|,|-)
+      scope: constant.numeric.bbj
+    - match: (?i)(?<=\s|=|>|\(|\+|,)\$(\w|\d){2}\$(?=\s|\)|,|\+|=)
+      scope: constant.numeric.bbj
+      # The variables
+    - match: (?i)(\w+\.)?\w+\$(?=\s|=|<|>|\(|\)|,|\+|:)
+      scope: variable.parameter.bbj 
+    - match: (?i)\w+!(?=\s|=|.|\(|\)|,)
+      scope: variable.parameter.bbj 
+      # The Strings
+    - match: (?i)'([^'])*'
+      scope: string.quoted.double.bbj
+    - match: (?i)\"([^"])*\"
+      scope: string.quoted.single.bbj
+      # Comment
+    - match: (?i)(?<=^|\s)rem(?=\s).*
+      scope: comment.line.bbj
+      # Support
+    - match: (?i)(?<=\s|^|\)|\+)BBjAPI(?=\()
+      scope: support.class.bbj
+    - match: (?i)(?<=\s|=|>|\(|,|\+)(str|int|ctrl|sendmsg|scall|msgbox|jul|argv|field|nfield|argc|neval|date|sgn|dec|cast|stbl|min|fill|pad|asc|hta|ath|len|num|mask|cvs|pgm|tcb|(x)?fid|(x)?fin|pos|fattr)(?=\()
+      scope: support.function.bbj
+      # Storage
+    - match: (?i)^def(?=\s)
+      scope: storage.type.bbj
+    - match: (?i)^fnend(?=\s|$)
+      scope: storage.type.bbj
+    - match: (?i)(?<=^|\s)(\w+:)(?=\s)
+      scope: storage.type.bbj

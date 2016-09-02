@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+if($1) then
+	$2
+else
+	$3
+endif
+]]></content>
+	<tabTrigger>ifelse</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>If and else</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[System.currentTimeMillis()]]></content>
+	<tabTrigger>millis</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>System.currentTimeMillis()</description>
+</snippet>

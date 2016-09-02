@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+if($1) then
+	$2
+endif
+]]></content>
+	<tabTrigger>if</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>Simple if</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[BBjAPI().getSysGui()]]></content>
+	<tabTrigger>getsys</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>BBjAPI().getSysGui()</description>
+</snippet>

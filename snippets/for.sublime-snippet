@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+for $1 to $2
+	$4
+next $3
+]]></content>
+	<tabTrigger>for</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>for</description>
+</snippet>

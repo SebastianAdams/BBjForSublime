@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[System.out.println($1)]]></content>
+	<tabTrigger>println</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>System.out.println</description>
+</snippet>

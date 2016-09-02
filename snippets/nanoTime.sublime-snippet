@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[System.nanoTime()]]></content>
+	<tabTrigger>nanoTime</tabTrigger>
+	<scope>source.bbj</scope>
+	<description>System.nanoTime()</description>
+</snippet>
