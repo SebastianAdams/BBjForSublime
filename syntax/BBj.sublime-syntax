@@ -8,20 +8,14 @@ scope: source.bbj
 contexts:
   main: 
     # The keywords
-    - match: (?i)(continue|break|return)
-      scope: keyword.other.bbj
-    - match: (?i)(?<=\s|=)(call|unt|string)(?=\s)
-      scope: keyword.other.bbj
-    - match: (?i)(?<=\s|^)(print|goto|gosub|dim|redim)
-      scope: keyword.other.bbj
-    - match: (?i)(?<=\s|^|=|\()new(?=\s)
+    - match: (?i)(?<=\s|^|=|\()(new|methodret)(?=\s)
       scope: keyword.other.bbj
     # The constructs
     - match: (?i)(?<=^|\s|;)(if)(?=\s|\()
       scope: keyword.control.bbj
     - match: (?i)(?<=^|\s|;)(then|else|endif|fi)(?=\s|$)
       scope: keyword.control.bbj
-    - match: (?i)(?<=^|\s|;)(while|wend)(?=\s)
+    - match: (?i)(?<=^|\s|;)(while|wend)(?=\s|\()
       scope: keyword.control.bbj
     - match: (?i)(?<=^|\s|;)(for|to|step|next)(?=\s)
       scope: keyword.control.bbj
@@ -30,32 +24,49 @@ contexts:
     - match: (?i)(?<=\s)(or|and)(?=\s)
       scope: keyword.operator.bbj
       # Constants
-    - match: (?i)(?<=\s|=|>|\+|,|\(|-)\d+(?=\s|\)|,|-)
+    - match: (?i)(?<=\s|=|>|<|\+|\*|,|\(|-|/)\d+(\.\d+)?(?=\s|\)|,|-|\+|;)
       scope: constant.numeric.bbj
-    - match: (?i)(?<=\s|=|>|\(|\+|,)\$(\w|\d){2}\$(?=\s|\)|,|\+|=)
+    - match: (?i)(?<=\s|=|>|\(|\+|,)\$((\w|\d){2}|(\d)+)\$(?=\s|\)|,|\+|=)
       scope: constant.numeric.bbj
       # The variables
-    - match: (?i)(\w+\.)?\w+\$(?=\s|=|<|>|\(|\)|,|\+|:)
+    - match: (?i)(\w+\.)?\w+\$(?=\s|=|<|>|\(|\)|,|\+|:|;|\[)
       scope: variable.parameter.bbj 
     - match: (?i)\w+!(?=\s|=|.|\(|\)|,)
       scope: variable.parameter.bbj 
       # The Strings
     - match: (?i)'([^'])*'
-      scope: string.quoted.double.bbj
-    - match: (?i)\"([^"])*\"
       scope: string.quoted.single.bbj
+    - match: (?i)\"([^"])*\"
+      scope: string.quoted.double.bbj
       # Comment
     - match: (?i)(?<=^|\s)rem(?=\s).*
       scope: comment.line.bbj
       # Support
     - match: (?i)(?<=\s|^|\)|\+)BBjAPI(?=\()
       scope: support.class.bbj
-    - match: (?i)(?<=\s|=|>|\(|,|\+)(str|int|ctrl|sendmsg|scall|msgbox|jul|argv|field|nfield|argc|neval|date|sgn|dec|cast|stbl|min|fill|pad|asc|hta|ath|len|num|mask|cvs|pgm|tcb|(x)?fid|(x)?fin|pos|fattr)(?=\()
+    - match: (?i)(?<=\s|=|>|<|\(|,|\)|:|\+)(argv|bin|cast|chr|ctrl|date|dec|dims|dir|dsk|errmes|fattr|field|fill|iff|info|int|ior|jul|min|mod|msgbox|neval|nfield|resget|resopen|scall|sendmsg|seval|sgn|str|tmpl|stbl|pad|asc|hta|ath|len|tsk|num|mask|cvs|pgm|tcb|(x)?fid|(x)?fin|pos)(?=\()
       scope: support.function.bbj
+    - match: (?i)(?<=\s|^|,|=|\(|\)|\+|<|>)(argc|chn|err|opts|sys|tim|unt)(?=\(|\s|,|=|\)|<|>|\+)
+      scope: support.variable.bbj
+    - match: (?i)(?<=\s|^|,|=|\(|\)|\+|<|>)(null)(?=(\s)?\((\s)?\))
+      scope: support.constant.bbj
+      # Support: The BBj Verbs that are usally preceeded by other code
+    - match: (?i)(?<=\s|^|,|\(|\)|\+)(addr|call|close|dim|drop|erase|eval|execute|exitto|field|gosub|goto|let|mkdir|open|print|read(\srecord)?|redim|seterr|setesc|setopts|settrace|sqlopen|string|until|use)(?=\(|\s|,|'|\")
+      scope: support.other.bbj
+      # Support: The BBj Verbs that usually aren't preceeded by other code
+    - match: (?i)(?<=\s|^|,|\(|\)|\+)(break|continue|endtrace|enter|escape|exit|process_events|release|return|sqclose)(?=\(|\s|$)
+      scope: support.other.bbj
       # Storage
-    - match: (?i)^def(?=\s)
+    - match: (?i)(?<=^|\s)(class|method)(?=\s)
       scope: storage.type.bbj
-    - match: (?i)^fnend(?=\s|$)
+    - match: (?i)(?<=^|\s)(classend|methodend)(?=\s|$)
       scope: storage.type.bbj
-    - match: (?i)(?<=^|\s)(\w+:)(?=\s)
-      scope: storage.type.bbj
+    - match: (?i)(?<=^|\s)(declare(\sauto)?|public|private|protected)(?=\s)
+      scope: storage.modifier.bbj
+      # Entity
+    - match: (?i)(?<=^)((\s)+)?(\w+:)(?=\s)
+      scope: entity.name.tag.bbj
+    - match: (?i)(?<=^|\s)def(?=\s)
+      scope: entity.name.function.bbj
+    - match: (?i)(?<=^|\s)fnend(?=\s|$)
+      scope: entity.name.function.bbj

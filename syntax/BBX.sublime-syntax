@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: BBX
+file_extensions:
+  - bbx
+scope: source.bbx
+contexts:
+  main:
+    # Comment
+    - match: (?i)(?<=^|\s)(#|;)(?=\s).*
+      scope: comment.line.bbj
+    # Numbers
+    - match: (?i)(?<=\s|=|>|<|\+|\*|,|\(|-|/)\d+(\.\d+)?(?=\s|\)|,|-|\+|;)
+      scope: constant.numeric.bbj
+    # Support: The framework Verbs
+    - match: (?i)(?<=\s|^|,|\(|\)|\+)(set|alias|dsksyn|setopts|prefix)(?=\(|\s|$)
+      scope: support.other.bbj
+    # The Strings
+    - match: (?i)\"([^"])*\"
+      scope: string.quoted.double.bbj

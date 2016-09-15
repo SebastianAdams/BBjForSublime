@@ -1,0 +1,23 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions:
+  - debuglog
+scope: source.debuglog
+contexts:
+  main:
+    # Comment
+    - match: (?i)(?<=^|\s)\*(\*)*(?=\s).*
+      scope: comment.line.debuglog
+    # Keywords
+    - match: (?i)(?<=]\s)(info|start|sysout|syserr|warning)(?=\s)
+      scope: support.constant.debuglog
+    # Constants
+    - match: (?i)(?<=\s|=|>|<|\+|\*|,|\(|-|/|:|\[)\d+(\.\d+)?(?=\s|\)|,|-|\+|;|\]|:)
+      scope: constant.numeric.bbj
+    # Strings
+    - match: (?i)\"([^"])*\"
+      scope: string.quoted.double.bbj
+    #Entity
+    - match: (?i)((\w|\d|\$)+\.(\w|\d|\$)+)+(\.<init>)?(?=:|\(|\s)
+      scope: entity.name.type.debuglog
