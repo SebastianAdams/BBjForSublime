@@ -2,8 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
 name: BBj
-file_extensions:
-  - bbj
+file_extensions: [bbj, src]
 scope: source.bbj
 contexts:
   main: 
@@ -29,9 +28,9 @@ contexts:
     - match: (?i)(?<=\s|=|>|\(|\+|,)\$((\w|\d){2}|(\d)+)\$(?=\s|\)|,|\+|=)
       scope: constant.numeric.bbj
       # The variables
-    - match: (?i)(\w+\.)?\w+\$(?=\s|=|<|>|\(|\)|,|\+|:|;|\[)
+    - match: (?i)(#)?(\w+\.)?\w+\$(?=\s|=|<|>|\(|\)|,|\+|:|;|\[)
       scope: variable.parameter.bbj 
-    - match: (?i)\w+!(?=\s|=|.|\(|\)|,)
+    - match: (?i)(#)?\w+!(?=\s|=|.|\(|\)|,)
       scope: variable.parameter.bbj 
       # The Strings
     - match: (?i)'([^'])*'

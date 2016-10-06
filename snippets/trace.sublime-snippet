@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+ch = unt
+open(ch, mode="o_create,o_trunc") "$1"
+settrace(ch)
+]]> </content>
+    <tabTrigger>trace</tabTrigger>
+	<scope>source.bbj</scope>
+</snippet>
